@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-body, html {
-  font-family: Nunito, sans-serif;
-}
-
 .container {
   width: 100%;
   margin: 0 auto;
@@ -35,4 +31,4 @@ body, html {
 
 .login-form {
   width: 100%;
-}
+}/*# sourceMappingURL=Register.css.map */

@@ -1,0 +1,13 @@
+.login-form-title {
+  font-family: Nunito, sans-serif;
+  display: block;
+  font-size: 30px;
+  color: azure;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-form-title img {
+  width: 200px;
+}/*# sourceMappingURL=LoginTitulo.css.map */

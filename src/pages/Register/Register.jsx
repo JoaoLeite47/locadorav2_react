@@ -1,6 +1,8 @@
 import React from "react";
-import "Register.css";
-import "../../Global.css"
+import RegisterInputs from "../../components/Register/RegisterInputs/RegisterInputs";
+import "./Register.css";
+import "../../Global.css";
+import RegisterButtons from "../../components/Register/RegisterButtons/RegisterButtons";
 
 export default function Register() {
   return (
@@ -8,7 +10,10 @@ export default function Register() {
       <div className="container">
         <div className="container-login">
           <div className="wrap-login">
-            <form className="login-form"></form>
+            <form className="login-form">
+              <RegisterInputs />
+              <RegisterButtons />
+            </form>
           </div>
         </div>
       </div>

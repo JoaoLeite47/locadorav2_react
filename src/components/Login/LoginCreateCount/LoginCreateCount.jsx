@@ -6,7 +6,7 @@ export default function LoginCreateCount() {
     <div>
       <div className="text-center">
         <span className="txt1">Não possui conta? </span>
-        <a className="txt2" href="#">
+        <a className="txt2" href="/register">
           Criar conta
         </a>
       </div>

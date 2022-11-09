@@ -1,11 +1,8 @@
-import Login from "./pages/login/Login";
+// import Login from "./pages/login/Login";
+import RoutesPath from "./routes/RoutesPath";
 
 function App() {
-  return (
-    <div className="App">
-      <Login/>
-    </div>
-  );
+  return <RoutesPath />;
 }
 
 export default App;

@@ -14,7 +14,7 @@
 }
 
 body {
-  background-image: linear-gradient(to right, #034378, #2d4e68);
+  background-image: linear-gradient(to left, #21d4fd, #b721ff);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
@@ -108,7 +108,7 @@ h1 {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #77d7b9;
+    background-color: #b721ff;
     color: #fff;
     padding: 0.8em;
     span {
@@ -176,7 +176,7 @@ h1 {
     li {
       width: 33.333333%;
       float: left;
-      background-color: #77d7b9;
+      background-color: #21d4fd;
       height: 60px;
       position: relative;
     }

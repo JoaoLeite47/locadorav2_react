@@ -1,6 +1,6 @@
 import React from "react";
 import "./Cards.css"
-import Logo from "../../assets/img/Logo.png"
+import Logo from "../../../assets/img/Logo.png"
 
 export default function Cards() {
   return (

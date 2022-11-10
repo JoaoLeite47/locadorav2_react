@@ -1,5 +1,4 @@
 import React from "react";
-import Logo from "../../../assets/img/Logo.png"
 import "./LoginTitulo.css"
 
 export default function LoginTitulo() {
@@ -8,7 +7,6 @@ export default function LoginTitulo() {
       <span className="login-form-title"> Bem vindo </span>
 
       <span className="login-form-title">
-        <img src={Logo} alt="Honda" />
       </span>
     </div>
   );

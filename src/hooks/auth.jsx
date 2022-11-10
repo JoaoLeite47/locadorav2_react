@@ -1,27 +1,54 @@
-import { createContext, useContext } from "react";
-import {api} from "../service/api";
+import { createContext, useContext, useEffect, useState } from "react";
+import { api } from "../service/api";
+export const AuthContext = createContext({});
 
-const AuthContext = createContext({});
+function AuthProvider({ children }) {
+  const [data, setData] = useState({});
+  const [list, setList] = useState([]);
 
-export function AuthProvider({ props }) {
-  
   async function signIn({ nickname, password }) {
     try {
       const response = await api.post("/auth", { nickname, password });
-      console.log(response);
+
+      const { token, user } = response.data;
+      console.log(response.data);
+
+      localStorage.setItem("@token_db", token);
+
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+      setData({ token, user });
+
+      alert("Login Bem sucedido!");
     } catch (error) {
       if (error.response) {
         alert(error.response.data.message);
       } else {
-        alert("Não foi possivel efetuar login!");
+        alert("Não foi possível efetuar login");
       }
     }
   }
 
-  return <AuthContext.Provider value={signIn}>{props}</AuthContext.Provider>;
+  useEffect(() => {
+    const token = localStorage.getItem("@token_db");
+    if (token) {
+      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+      setData({
+        token,
+      });
+    }
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ signIn, user: data.user }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
-export function useAuth() {
+function useAuth() {
   const context = useContext(AuthContext);
   return context;
 }
+export { AuthProvider, useAuth };

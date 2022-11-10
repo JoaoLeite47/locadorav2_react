@@ -6,15 +6,17 @@ import Login from "../pages/login/Login";
 import Register from "../pages/Register/Register";
 
 export default function RoutesPath() {
+  // const { user } = useAuth();
+
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/" element={<Login />} />
-        <AuthProvider>
-          <Route path="/register" element={<Register />} />
-        </AuthProvider>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Login />} />
+           <Route path="/home" element={<Home />} />
+           <Route path="/register" element={<Register />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

@@ -4,19 +4,20 @@ import "./RegisterInputs.css";
 
 export default function RegisterInputs() {
   const [nickname, setNickname] = useState("");
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [image, setImage] = useState("");
 
-  const handleSignUp = () => {
-    if (!nickname || !name || !password || !confirmPassword || !image) {
-      return alert("Preencha todos os campos");
-    }
+  const handleSignUp = (e) => {
     api
-      .post("/usuario", { nickname, name, password, confirmPassword, image })
+      .post("/usuario", {
+        nickname,
+        email,
+        password,
+        confirmPassword,
+      })
       .then(() => {
-       alert("Cadastrado!")
+        alert("Cadastrado!");
       })
       .catch((error) => {
         if (error.response) {
@@ -25,6 +26,7 @@ export default function RegisterInputs() {
           alert("Não foi possível realizar o cadastro!");
         }
       });
+    e.preventDefault();
   };
   return (
     <div>
@@ -40,11 +42,11 @@ export default function RegisterInputs() {
 
         <div className="wrap-input">
           <input
-            className={name !== "" ? "has-val input" : "input"}
+            className={email !== "" ? "has-val input" : "input"}
             type="text"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <span className="focus-input" data-placeholder="Nome"></span>
+          <span className="focus-input" data-placeholder="Email"></span>
         </div>
 
         <div className="wrap-input">
@@ -68,17 +70,6 @@ export default function RegisterInputs() {
           ></span>
         </div>
 
-        <div className="wrap-input">
-          <input
-            className={image !== "" ? "has-val input" : "input"}
-            type="text"
-            onChange={(e) => setImage(e.target.value)}
-          />
-          <span
-            className="focus-input"
-            data-placeholder="Url da sua foto!"
-          ></span>
-        </div>
         <div>
           <div className="container-login-form-btn">
             <button className="login-form-btn" onClick={handleSignUp}>

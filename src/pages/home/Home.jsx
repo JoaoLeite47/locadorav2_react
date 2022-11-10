@@ -1,67 +1,68 @@
 import "./Home.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { api } from "../../service/api";
+import ModalUsuarioUpdate from "../../components/Home/ModalUsuarioUpdate/ModalUsuarioUpdate";
 
 export default function Home() {
-  const [filter, setFilter] = useState("");
+  const [list, setList] = useState([]);
+  const [clienteUpdateModalVisible, setClienteUpdateModalVisible] =
+    useState(false);
+  const [baseId, setBaseId] = useState("")
 
-  if (filter) {
-    const exp = eval(`/${filter.replace(/[^\d\w]+/, ".*")}/i`);
-    // list = list.filter((item) => exp.test(item.cpf));
+  useEffect(() => {
+    async function fetchUsers() {
+      const response = await api.get("/usuario");
+      setList(response.data);
+    }
+    fetchUsers();
+  }, [list]);
+
+  async function handleDelete(id) {
+    await api.delete(`/usuario/${id}`);
+    alert("deletado");
   }
 
-  const handleFilter = (e) => {
-    setFilter(e.target.value); // function to filter the list by name
+  const handleModalUpdate = (cpf) => {
+    setClienteUpdateModalVisible(true);
+    setBaseId(cpf);
   };
-  
+
   return (
     <div>
-      <input placeholder="CPF Example: 56558215225" onChange={handleFilter} />
-      {/* <table className="table_cliente">
+      <table className="table_cliente">
         <thead className="thead_cliente">
           <tr className="tr_cliente">
-            <th>RG</th>
-            <th>Data de nascimento</th>
-            <th>CNH</th>
-            <th>Nome</th>
-            <th>Endereço</th>
-            <th>CPF</th>
+            <th>id</th>
+            <th>nickname</th>
+            <th>email</th>
           </tr>
         </thead>
         <tbody>
-          {list.map(({ rg, dt_nascimento, cnh, nome, endereco, cpf }) => {
+          {list.map(({ email, nickname, id }) => {
             return (
-              <tr key={cpf}>
-                <td>{rg}</td>
-                <td>{dt_nascimento}</td>
-                <td>{cnh}</td>
-                <td>{nome}</td>
-                <td>{endereco}</td>
-                <td id="cpf">{cpf}</td>
+              <tr key={id}>
+                <td>{id}</td>
+                <td>{nickname}</td>
+                <td>{email}</td>
                 <td>
                   <button
                     className="delete buttonAction"
-                    onClick={() => handleModalDelete(cpf)}
+                    onClick={() => handleDelete(id)}
                   >
                     Deletar
                   </button>
-                  {clienteDeleteModalVisible ? (
-                    <ModalClienteDelete
-                      onClose={() => setClienteDeleteModalVisible(false)}
-                      cpfBase={cpfBase}
-                    />
-                  ) : null}
                 </td>
                 <td>
                   <button
                     className="update buttonAction"
-                    onClick={() => handleModalUpdate(cpf)}
+                    onClick={() => handleModalUpdate(id)}
                   >
                     Atualizar
                   </button>
                   {clienteUpdateModalVisible ? (
-                    <ModalClienteUpdate
-                      onClose={() => setClienteUpdateModalVisible(false)}
-                      cpfBase={cpfBase}
+                    <ModalUsuarioUpdate
+                      onClose={() => clienteUpdateModalVisible(false)}
+                      baseId={baseId}
                     />
                   ) : null}
                 </td>
@@ -69,7 +70,7 @@ export default function Home() {
             );
           })}
         </tbody>
-      </table> */}
+      </table>
     </div>
   );
 }

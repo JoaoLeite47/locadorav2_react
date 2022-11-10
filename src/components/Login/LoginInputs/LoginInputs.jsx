@@ -1,16 +1,19 @@
 import { React, useState } from "react";
-import "./LoginInputs.css";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks/auth";
+import "./LoginInputs.css";
 
 export default function LoginInputs() {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const { signIn } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSignIn = () => {
-    signIn({ nickname, password });
-  };
-
+function handleSignIn(e) {
+  signIn({ nickname, password })
+    e.preventDefault();
+    navigate("/home");
+  }
   return (
     <div>
       <form className="login-form">
@@ -18,17 +21,15 @@ export default function LoginInputs() {
           <input
             className={nickname !== "" ? "has-val input" : "input"}
             type="text"
-            value={nickname}
             onChange={(e) => setNickname(e.target.value)}
           />
-          <span className="focus-input" data-placeholder="Email"></span>
+          <span className="focus-input" data-placeholder="Nickname"></span>
         </div>
 
         <div className="wrap-input">
           <input
             className={password !== "" ? "has-val input" : "input"}
             type="password"
-            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <span className="focus-input" data-placeholder="Password"></span>

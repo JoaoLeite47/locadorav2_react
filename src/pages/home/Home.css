@@ -1,20 +1,64 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.table_cliente {
+  width: 100%;
 }
 
-.container {
-  width: 100%;
-  margin: 0 auto;
+.table_cliente th,
+.table_cliente td {
+  padding: 10px 20px;
+  text-align: left;
 }
 
-.container-home {
-  width: 100%;
-  min-height: 100vh;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-  background-color: rgb(32, 32, 32);
+th {
+  color: #000;
+}
+
+td {
+  color: #000;
+}
+
+.table_cliente th {
+  cursor: pointer;
+}
+
+input {
+  margin-top: 20px;
+  padding: 10px;
+  border-color: #000;
+  color: #000;
+  background-color: #000;
+  width: 95%;
+  border-radius: 10px;
+}
+
+.delete {
+  padding: 10px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  font-size: 15px;
+  border-radius: 10px;
+  background-color: red;
+  color: #000;
+  border-color: transparent;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.delete:hover {
+  background-color: rgb(228, 2, 2);
+}
+
+.update {
+  padding: 10px;
+  margin-bottom: 2px;
+  font-size: 15px;
+  border-radius: 10px;
+  background-color: rgb(213, 235, 15);
+  color: rgb(2, 2, 2);
+  border-color: transparent;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.update:hover {
+  background-color: rgb(166, 184, 8);
 }/*# sourceMappingURL=Home.css.map */
